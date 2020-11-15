@@ -1,0 +1,56 @@
+#include <iostream>
+#include <time.h>
+#include <stdlib.h>
+
+void static_tester(void);
+//the static method
+void stack_tester(void);
+//the stack method
+void heap_tester(void);
+//the heap method
+int main(){
+  struct timespec Start, Finish;
+  //Creating the start and stop for the timer
+  int x;
+  int testAmount = 100000;
+  //this is for the TA to optionly change  
+  clock_gettime(CLOCK_REALTIME, &Start);
+  //Starting the "timer"
+  for(x = 0; x < testAmount; x++){
+    static_tester();
+  }
+  //calling the method 500000 times
+  clock_gettime(CLOCK_REALTIME, &Finish);
+  //ending the "timer"
+  printf("Using the Static option took %ld nanoseconds\n",Finish.tv_nsec-Start.tv_nsec);
+  
+  //Same process different method
+  clock_gettime(CLOCK_REALTIME, &Start);
+  for(x = 0; x < testAmount; x++){
+    stack_tester();
+  }
+  clock_gettime(CLOCK_REALTIME, &Finish);
+  printf("Using the Stack option took %ld nanoseconds\n",Finish.tv_nsec-Start.tv_nsec);
+
+
+  //Same process different method
+  clock_gettime(CLOCK_REALTIME, &Start);
+  for(x = 0; x < testAmount; x++){
+    heap_tester();
+  }
+  clock_gettime(CLOCK_REALTIME, &Finish);
+  printf("Using the Heap option took %ld nanoseconds\n",Finish.tv_nsec-Start.tv_nsec);
+
+  return 0;
+
+}
+
+void static_tester(void){
+  static int a[123456];
+}
+void stack_tester(void){
+  int b[123456];
+}
+void heap_tester(void){
+  int *c = new int[123456];
+}

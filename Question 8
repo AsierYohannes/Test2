@@ -1,0 +1,36 @@
+# Asier's Question 8
+
+#First we test the static scope
+$first = 100;
+
+sub function1{
+    return $first;
+}
+
+sub staticOption{
+    my $first = 200;
+    #the "my" keyowrd in Perl is for static scope variables
+    return function1();
+}
+#The "first" variable will remain 100
+
+print "The output using static scoping is : ";
+print staticOption();
+print "\n";
+
+
+$second = 99;
+
+sub function2{
+    return $second;
+}
+
+sub dynamicOption{
+    local $second = 88;
+    #the "local" keyowrd in Perl is for dynamic scope variables
+    return function2();
+}
+#The "second" varibale will change to 88
+
+print "The output using dynamic scoping is : ";
+print dynamicOption();

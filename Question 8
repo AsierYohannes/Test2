@@ -9,7 +9,7 @@ sub function1{
 
 sub staticOption{
     my $first = 200;
-    #the "my" keyowrd in Perl is for static scope variables
+    #the "my" keyword in Perl is for static scope variables
     return function1();
 }
 #The "first" variable will remain 100
@@ -27,7 +27,7 @@ sub function2{
 
 sub dynamicOption{
     local $second = 88;
-    #the "local" keyowrd in Perl is for dynamic scope variables
+    #the "local" keyword in Perl is for dynamic scope variables
     return function2();
 }
 #The "second" varibale will change to 88
